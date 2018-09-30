@@ -1,0 +1,25 @@
+body {
+    font-size: 18px;
+    margin-left: 200px;
+}
+
+h1 {
+    font-size: 38px;
+}
+
+table.overview {
+    width: 100%;
+    font-size: 26px;
+    margin-top:50px;
+}
+table.overview th {
+    text-align: left;
+}
+
+table.overview th span {
+    display: none;
+}
+
+table.overview th:hover {
+    cursor: pointer;
+}

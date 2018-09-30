@@ -1,13 +1,3 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Main</title>
-</head>
-
-<body>
-<div id="elm-f0111bc4e658d0f98db96260c16f7e49"></div>
-<script>
 (function(scope){
 'use strict';
 
@@ -4299,14 +4289,14 @@ function _Browser_load(url)
 		}
 	}));
 }
-var author$project$Main$update = F2(
-	function (msg, model) {
-		return model;
+var billstclair$elm_sortable_table$Table$State = F2(
+	function (a, b) {
+		return {$: 'State', a: a, b: b};
 	});
-var elm$core$Basics$identity = function (x) {
-	return x;
-};
 var elm$core$Basics$False = {$: 'False'};
+var billstclair$elm_sortable_table$Table$initialSort = function (header) {
+	return A2(billstclair$elm_sortable_table$Table$State, header, false);
+};
 var elm$core$Basics$True = {$: 'True'};
 var elm$core$Result$isOk = function (result) {
 	if (result.$ === 'Ok') {
@@ -4315,11 +4305,6 @@ var elm$core$Result$isOk = function (result) {
 		return false;
 	}
 };
-var elm$core$Array$branchFactor = 32;
-var elm$core$Array$Array_elm_builtin = F4(
-	function (a, b, c, d) {
-		return {$: 'Array_elm_builtin', a: a, b: b, c: c, d: d};
-	});
 var elm$core$Basics$EQ = {$: 'EQ'};
 var elm$core$Basics$GT = {$: 'GT'};
 var elm$core$Basics$LT = {$: 'LT'};
@@ -4400,6 +4385,11 @@ var elm$core$Array$foldr = F3(
 var elm$core$Array$toList = function (array) {
 	return A3(elm$core$Array$foldr, elm$core$List$cons, _List_Nil, array);
 };
+var elm$core$Array$branchFactor = 32;
+var elm$core$Array$Array_elm_builtin = F4(
+	function (a, b, c, d) {
+		return {$: 'Array_elm_builtin', a: a, b: b, c: c, d: d};
+	});
 var elm$core$Basics$ceiling = _Basics_ceiling;
 var elm$core$Basics$fdiv = _Basics_fdiv;
 var elm$core$Basics$logBase = F2(
@@ -4781,60 +4771,42 @@ var elm$json$Json$Decode$errorToStringHelp = F2(
 			}
 		}
 	});
-var elm$json$Json$Decode$map = _Json_map1;
-var elm$json$Json$Decode$map2 = _Json_map2;
-var elm$json$Json$Decode$succeed = _Json_succeed;
-var elm$virtual_dom$VirtualDom$toHandlerInt = function (handler) {
-	switch (handler.$) {
-		case 'Normal':
-			return 0;
-		case 'MayStopPropagation':
-			return 1;
-		case 'MayPreventDefault':
-			return 2;
-		default:
-			return 3;
-	}
-};
-var elm$html$Html$div = _VirtualDom_node('div');
-var elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
-var elm$html$Html$text = elm$virtual_dom$VirtualDom$text;
-var author$project$Main$view = function (model) {
-	return A2(
-		elm$html$Html$div,
-		_List_Nil,
-		_List_fromArray(
-			[
-				elm$html$Html$text('Hello')
-			]));
-};
 var elm$core$Platform$Cmd$batch = _Platform_batch;
 var elm$core$Platform$Cmd$none = elm$core$Platform$Cmd$batch(_List_Nil);
+var author$project$Main$init = function (_n0) {
+	var model = {
+		cars: _List_fromArray(
+			[
+				{car: 'Hyundai I40', regNr: 'ZT47121', status: 'Venter på mekaniker', workType: 'EU-kontroll'},
+				{car: 'Skoda Octavia', regNr: 'ZT52590', status: 'Arbeid startet 08:14', workType: 'Dekkskifte'}
+			]),
+		tableState: billstclair$elm_sortable_table$Table$initialSort('regNr')
+	};
+	return _Utils_Tuple2(model, elm$core$Platform$Cmd$none);
+};
 var elm$core$Platform$Sub$batch = _Platform_batch;
 var elm$core$Platform$Sub$none = elm$core$Platform$Sub$batch(_List_Nil);
-var elm$browser$Browser$External = function (a) {
-	return {$: 'External', a: a};
+var author$project$Main$subscriptions = function (model) {
+	return elm$core$Platform$Sub$none;
 };
-var elm$browser$Browser$Internal = function (a) {
-	return {$: 'Internal', a: a};
+var author$project$Main$update = F2(
+	function (msg, model) {
+		var newState = msg.a;
+		return _Utils_Tuple2(
+			_Utils_update(
+				model,
+				{tableState: newState}),
+			elm$core$Platform$Cmd$none);
+	});
+var author$project$Main$SetTableState = function (a) {
+	return {$: 'SetTableState', a: a};
 };
-var elm$browser$Browser$Dom$NotFound = function (a) {
-	return {$: 'NotFound', a: a};
+var billstclair$elm_sortable_table$Table$Config = function (a) {
+	return {$: 'Config', a: a};
 };
-var elm$core$Basics$never = function (_n0) {
-	never:
-	while (true) {
-		var nvr = _n0.a;
-		var $temp$_n0 = nvr;
-		_n0 = $temp$_n0;
-		continue never;
-	}
+var elm$core$Basics$identity = function (x) {
+	return x;
 };
-var elm$core$Task$Perform = function (a) {
-	return {$: 'Perform', a: a};
-};
-var elm$core$Task$succeed = _Scheduler_succeed;
-var elm$core$Task$init = elm$core$Task$succeed(_Utils_Tuple0);
 var elm$core$List$foldrHelper = F4(
 	function (fn, acc, ctr, ls) {
 		if (!ls.b) {
@@ -4904,6 +4876,519 @@ var elm$core$List$map = F2(
 			_List_Nil,
 			xs);
 	});
+var billstclair$elm_sortable_table$Table$customConfig = function (_n0) {
+	var toId = _n0.toId;
+	var toMsg = _n0.toMsg;
+	var columns = _n0.columns;
+	var customizations = _n0.customizations;
+	return billstclair$elm_sortable_table$Table$Config(
+		{
+			columns: A2(
+				elm$core$List$map,
+				function (_n1) {
+					var cData = _n1.a;
+					return cData;
+				},
+				columns),
+			customizations: customizations,
+			toId: toId,
+			toMsg: toMsg
+		});
+};
+var billstclair$elm_sortable_table$Table$simpleRowAttrs = function (_n0) {
+	return _List_Nil;
+};
+var billstclair$elm_sortable_table$Table$HtmlDetails = F2(
+	function (attributes, children) {
+		return {attributes: attributes, children: children};
+	});
+var elm$json$Json$Decode$map = _Json_map1;
+var elm$json$Json$Decode$map2 = _Json_map2;
+var elm$json$Json$Decode$succeed = _Json_succeed;
+var elm$virtual_dom$VirtualDom$toHandlerInt = function (handler) {
+	switch (handler.$) {
+		case 'Normal':
+			return 0;
+		case 'MayStopPropagation':
+			return 1;
+		case 'MayPreventDefault':
+			return 2;
+		default:
+			return 3;
+	}
+};
+var elm$html$Html$span = _VirtualDom_node('span');
+var elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
+var elm$html$Html$text = elm$virtual_dom$VirtualDom$text;
+var elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
+var elm$html$Html$Attributes$style = elm$virtual_dom$VirtualDom$style;
+var billstclair$elm_sortable_table$Table$darkGrey = function (symbol) {
+	return A2(
+		elm$html$Html$span,
+		_List_fromArray(
+			[
+				A2(elm$html$Html$Attributes$style, 'color', '#555')
+			]),
+		_List_fromArray(
+			[
+				elm$html$Html$text(' ' + symbol)
+			]));
+};
+var billstclair$elm_sortable_table$Table$lightGrey = function (symbol) {
+	return A2(
+		elm$html$Html$span,
+		_List_fromArray(
+			[
+				A2(elm$html$Html$Attributes$style, 'color', '#ccc')
+			]),
+		_List_fromArray(
+			[
+				elm$html$Html$text(' ' + symbol)
+			]));
+};
+var elm$html$Html$th = _VirtualDom_node('th');
+var billstclair$elm_sortable_table$Table$simpleTheadHelp = function (_n0) {
+	var name = _n0.a;
+	var status = _n0.b;
+	var click = _n0.c;
+	var content = function () {
+		switch (status.$) {
+			case 'Unsortable':
+				return _List_fromArray(
+					[
+						elm$html$Html$text(name)
+					]);
+			case 'Sortable':
+				var selected = status.a;
+				return _List_fromArray(
+					[
+						elm$html$Html$text(name),
+						selected ? billstclair$elm_sortable_table$Table$darkGrey('↓') : billstclair$elm_sortable_table$Table$lightGrey('↓')
+					]);
+			default:
+				if (status.a.$ === 'Nothing') {
+					var _n2 = status.a;
+					return _List_fromArray(
+						[
+							elm$html$Html$text(name),
+							billstclair$elm_sortable_table$Table$lightGrey('↕')
+						]);
+				} else {
+					var isReversed = status.a.a;
+					return _List_fromArray(
+						[
+							elm$html$Html$text(name),
+							billstclair$elm_sortable_table$Table$darkGrey(
+							isReversed ? '↑' : '↓')
+						]);
+				}
+		}
+	}();
+	return A2(
+		elm$html$Html$th,
+		_List_fromArray(
+			[click]),
+		content);
+};
+var billstclair$elm_sortable_table$Table$simpleThead = function (headers) {
+	return A2(
+		billstclair$elm_sortable_table$Table$HtmlDetails,
+		_List_Nil,
+		A2(elm$core$List$map, billstclair$elm_sortable_table$Table$simpleTheadHelp, headers));
+};
+var billstclair$elm_sortable_table$Table$defaultCustomizations = {caption: elm$core$Maybe$Nothing, rowAttrs: billstclair$elm_sortable_table$Table$simpleRowAttrs, tableAttrs: _List_Nil, tbodyAttrs: _List_Nil, tfoot: elm$core$Maybe$Nothing, thead: billstclair$elm_sortable_table$Table$simpleThead};
+var billstclair$elm_sortable_table$Table$Column = function (a) {
+	return {$: 'Column', a: a};
+};
+var billstclair$elm_sortable_table$Table$IncOrDec = function (a) {
+	return {$: 'IncOrDec', a: a};
+};
+var elm$core$List$sortBy = _List_sortBy;
+var billstclair$elm_sortable_table$Table$increasingOrDecreasingBy = function (toComparable) {
+	return billstclair$elm_sortable_table$Table$IncOrDec(
+		elm$core$List$sortBy(toComparable));
+};
+var billstclair$elm_sortable_table$Table$textDetails = function (str) {
+	return A2(
+		billstclair$elm_sortable_table$Table$HtmlDetails,
+		_List_Nil,
+		_List_fromArray(
+			[
+				elm$html$Html$text(str)
+			]));
+};
+var elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
+var billstclair$elm_sortable_table$Table$stringColumn = F2(
+	function (name, toStr) {
+		return billstclair$elm_sortable_table$Table$Column(
+			{
+				name: name,
+				sorter: billstclair$elm_sortable_table$Table$increasingOrDecreasingBy(toStr),
+				viewData: A2(elm$core$Basics$composeL, billstclair$elm_sortable_table$Table$textDetails, toStr)
+			});
+	});
+var elm$json$Json$Encode$string = _Json_wrap;
+var elm$html$Html$Attributes$stringProperty = F2(
+	function (key, string) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			elm$json$Json$Encode$string(string));
+	});
+var elm$html$Html$Attributes$class = elm$html$Html$Attributes$stringProperty('className');
+var author$project$Main$tableConfig = billstclair$elm_sortable_table$Table$customConfig(
+	{
+		columns: _List_fromArray(
+			[
+				A2(
+				billstclair$elm_sortable_table$Table$stringColumn,
+				'Reg.nr',
+				function ($) {
+					return $.regNr;
+				}),
+				A2(
+				billstclair$elm_sortable_table$Table$stringColumn,
+				'Bilmerke',
+				function ($) {
+					return $.car;
+				}),
+				A2(
+				billstclair$elm_sortable_table$Table$stringColumn,
+				'Hva gjøres',
+				function ($) {
+					return $.workType;
+				}),
+				A2(
+				billstclair$elm_sortable_table$Table$stringColumn,
+				'Status',
+				function ($) {
+					return $.status;
+				})
+			]),
+		customizations: _Utils_update(
+			billstclair$elm_sortable_table$Table$defaultCustomizations,
+			{
+				tableAttrs: _List_fromArray(
+					[
+						elm$html$Html$Attributes$class('overview')
+					])
+			}),
+		toId: function ($) {
+			return $.regNr;
+		},
+		toMsg: author$project$Main$SetTableState
+	});
+var billstclair$elm_sortable_table$Table$applySorter = F3(
+	function (isReversed, sorter, data) {
+		switch (sorter.$) {
+			case 'None':
+				return data;
+			case 'Increasing':
+				var srt = sorter.a;
+				return srt(data);
+			case 'Decreasing':
+				var srt = sorter.a;
+				return elm$core$List$reverse(
+					srt(data));
+			case 'IncOrDec':
+				var srt = sorter.a;
+				return isReversed ? elm$core$List$reverse(
+					srt(data)) : srt(data);
+			default:
+				var srt = sorter.a;
+				return isReversed ? srt(data) : elm$core$List$reverse(
+					srt(data));
+		}
+	});
+var billstclair$elm_sortable_table$Table$findSorter = F2(
+	function (selectedColumn, columnData) {
+		findSorter:
+		while (true) {
+			if (!columnData.b) {
+				return elm$core$Maybe$Nothing;
+			} else {
+				var name = columnData.a.name;
+				var sorter = columnData.a.sorter;
+				var remainingColumnData = columnData.b;
+				if (_Utils_eq(name, selectedColumn)) {
+					return elm$core$Maybe$Just(sorter);
+				} else {
+					var $temp$selectedColumn = selectedColumn,
+						$temp$columnData = remainingColumnData;
+					selectedColumn = $temp$selectedColumn;
+					columnData = $temp$columnData;
+					continue findSorter;
+				}
+			}
+		}
+	});
+var billstclair$elm_sortable_table$Table$sort = F3(
+	function (_n0, columnData, data) {
+		var selectedColumn = _n0.a;
+		var isReversed = _n0.b;
+		var _n1 = A2(billstclair$elm_sortable_table$Table$findSorter, selectedColumn, columnData);
+		if (_n1.$ === 'Nothing') {
+			return data;
+		} else {
+			var sorter = _n1.a;
+			return A3(billstclair$elm_sortable_table$Table$applySorter, isReversed, sorter, data);
+		}
+	});
+var billstclair$elm_sortable_table$Table$getSortedData = F3(
+	function (_n0, state, data) {
+		var toId = _n0.a.toId;
+		var toMsg = _n0.a.toMsg;
+		var columns = _n0.a.columns;
+		var customizations = _n0.a.customizations;
+		return A3(billstclair$elm_sortable_table$Table$sort, state, columns, data);
+	});
+var billstclair$elm_sortable_table$Table$Reversible = function (a) {
+	return {$: 'Reversible', a: a};
+};
+var billstclair$elm_sortable_table$Table$Sortable = function (a) {
+	return {$: 'Sortable', a: a};
+};
+var billstclair$elm_sortable_table$Table$Unsortable = {$: 'Unsortable'};
+var elm$virtual_dom$VirtualDom$Normal = function (a) {
+	return {$: 'Normal', a: a};
+};
+var elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
+var elm$html$Html$Events$on = F2(
+	function (event, decoder) {
+		return A2(
+			elm$virtual_dom$VirtualDom$on,
+			event,
+			elm$virtual_dom$VirtualDom$Normal(decoder));
+	});
+var billstclair$elm_sortable_table$Table$onClick = F3(
+	function (name, isReversed, toMsg) {
+		return A2(
+			elm$html$Html$Events$on,
+			'click',
+			A2(
+				elm$json$Json$Decode$map,
+				toMsg,
+				A3(
+					elm$json$Json$Decode$map2,
+					billstclair$elm_sortable_table$Table$State,
+					elm$json$Json$Decode$succeed(name),
+					elm$json$Json$Decode$succeed(isReversed))));
+	});
+var elm$core$Basics$not = _Basics_not;
+var billstclair$elm_sortable_table$Table$toHeaderInfo = F3(
+	function (_n0, toMsg, _n1) {
+		var sortName = _n0.a;
+		var isReversed = _n0.b;
+		var name = _n1.name;
+		var sorter = _n1.sorter;
+		switch (sorter.$) {
+			case 'None':
+				return _Utils_Tuple3(
+					name,
+					billstclair$elm_sortable_table$Table$Unsortable,
+					A3(billstclair$elm_sortable_table$Table$onClick, sortName, isReversed, toMsg));
+			case 'Increasing':
+				return _Utils_Tuple3(
+					name,
+					billstclair$elm_sortable_table$Table$Sortable(
+						_Utils_eq(name, sortName)),
+					A3(billstclair$elm_sortable_table$Table$onClick, name, false, toMsg));
+			case 'Decreasing':
+				return _Utils_Tuple3(
+					name,
+					billstclair$elm_sortable_table$Table$Sortable(
+						_Utils_eq(name, sortName)),
+					A3(billstclair$elm_sortable_table$Table$onClick, name, false, toMsg));
+			case 'IncOrDec':
+				return _Utils_eq(name, sortName) ? _Utils_Tuple3(
+					name,
+					billstclair$elm_sortable_table$Table$Reversible(
+						elm$core$Maybe$Just(isReversed)),
+					A3(billstclair$elm_sortable_table$Table$onClick, name, !isReversed, toMsg)) : _Utils_Tuple3(
+					name,
+					billstclair$elm_sortable_table$Table$Reversible(elm$core$Maybe$Nothing),
+					A3(billstclair$elm_sortable_table$Table$onClick, name, false, toMsg));
+			default:
+				return _Utils_eq(name, sortName) ? _Utils_Tuple3(
+					name,
+					billstclair$elm_sortable_table$Table$Reversible(
+						elm$core$Maybe$Just(isReversed)),
+					A3(billstclair$elm_sortable_table$Table$onClick, name, !isReversed, toMsg)) : _Utils_Tuple3(
+					name,
+					billstclair$elm_sortable_table$Table$Reversible(elm$core$Maybe$Nothing),
+					A3(billstclair$elm_sortable_table$Table$onClick, name, false, toMsg));
+		}
+	});
+var elm$html$Html$td = _VirtualDom_node('td');
+var billstclair$elm_sortable_table$Table$viewCell = F2(
+	function (data, _n0) {
+		var viewData = _n0.viewData;
+		var details = viewData(data);
+		return A2(elm$html$Html$td, details.attributes, details.children);
+	});
+var elm$html$Html$tr = _VirtualDom_node('tr');
+var billstclair$elm_sortable_table$Table$viewRowHelp = F3(
+	function (columns, toRowAttrs, data) {
+		return A2(
+			elm$html$Html$tr,
+			toRowAttrs(data),
+			A2(
+				elm$core$List$map,
+				billstclair$elm_sortable_table$Table$viewCell(data),
+				columns));
+	});
+var elm$virtual_dom$VirtualDom$lazy3 = _VirtualDom_lazy3;
+var elm$html$Html$Lazy$lazy3 = elm$virtual_dom$VirtualDom$lazy3;
+var billstclair$elm_sortable_table$Table$viewRow = F4(
+	function (toId, columns, toRowAttrs, data) {
+		return _Utils_Tuple2(
+			toId(data),
+			A4(elm$html$Html$Lazy$lazy3, billstclair$elm_sortable_table$Table$viewRowHelp, columns, toRowAttrs, data));
+	});
+var elm$html$Html$caption = _VirtualDom_node('caption');
+var elm$html$Html$table = _VirtualDom_node('table');
+var elm$html$Html$tfoot = _VirtualDom_node('tfoot');
+var elm$html$Html$thead = _VirtualDom_node('thead');
+var elm$virtual_dom$VirtualDom$keyedNode = function (tag) {
+	return _VirtualDom_keyedNode(
+		_VirtualDom_noScript(tag));
+};
+var elm$html$Html$Keyed$node = elm$virtual_dom$VirtualDom$keyedNode;
+var billstclair$elm_sortable_table$Table$view = F3(
+	function (conf, state, data) {
+		var toId = conf.a.toId;
+		var toMsg = conf.a.toMsg;
+		var columns = conf.a.columns;
+		var customizations = conf.a.customizations;
+		var theadDetails = customizations.thead(
+			A2(
+				elm$core$List$map,
+				A2(billstclair$elm_sortable_table$Table$toHeaderInfo, state, toMsg),
+				columns));
+		var thead = A2(
+			elm$html$Html$thead,
+			theadDetails.attributes,
+			_List_fromArray(
+				[
+					A2(elm$html$Html$tr, _List_Nil, theadDetails.children)
+				]));
+		var sortedData = A3(billstclair$elm_sortable_table$Table$getSortedData, conf, state, data);
+		var tbody = A3(
+			elm$html$Html$Keyed$node,
+			'tbody',
+			customizations.tbodyAttrs,
+			A2(
+				elm$core$List$map,
+				A3(billstclair$elm_sortable_table$Table$viewRow, toId, columns, customizations.rowAttrs),
+				sortedData));
+		var withFoot = function () {
+			var _n1 = customizations.tfoot;
+			if (_n1.$ === 'Nothing') {
+				return A2(elm$core$List$cons, tbody, _List_Nil);
+			} else {
+				var attributes = _n1.a.attributes;
+				var children = _n1.a.children;
+				return A2(
+					elm$core$List$cons,
+					A2(elm$html$Html$tfoot, attributes, children),
+					A2(elm$core$List$cons, tbody, _List_Nil));
+			}
+		}();
+		return A2(
+			elm$html$Html$table,
+			customizations.tableAttrs,
+			function () {
+				var _n0 = customizations.caption;
+				if (_n0.$ === 'Nothing') {
+					return A2(elm$core$List$cons, thead, withFoot);
+				} else {
+					var attributes = _n0.a.attributes;
+					var children = _n0.a.children;
+					return A2(
+						elm$core$List$cons,
+						A2(elm$html$Html$caption, attributes, children),
+						A2(elm$core$List$cons, thead, withFoot));
+				}
+			}());
+	});
+var elm$html$Html$div = _VirtualDom_node('div');
+var author$project$Main$carsView = function (model) {
+	return A2(
+		elm$html$Html$div,
+		_List_Nil,
+		_List_fromArray(
+			[
+				A3(billstclair$elm_sortable_table$Table$view, author$project$Main$tableConfig, model.tableState, model.cars)
+			]));
+};
+var elm$html$Html$h1 = _VirtualDom_node('h1');
+var elm$html$Html$img = _VirtualDom_node('img');
+var elm$html$Html$Attributes$src = function (url) {
+	return A2(
+		elm$html$Html$Attributes$stringProperty,
+		'src',
+		_VirtualDom_noJavaScriptOrHtmlUri(url));
+};
+var author$project$Main$headerView = A2(
+	elm$html$Html$div,
+	_List_fromArray(
+		[
+			elm$html$Html$Attributes$class('header')
+		]),
+	_List_fromArray(
+		[
+			A2(
+			elm$html$Html$img,
+			_List_fromArray(
+				[
+					elm$html$Html$Attributes$src('assets/ams-logo.png')
+				]),
+			_List_Nil),
+			A2(
+			elm$html$Html$h1,
+			_List_Nil,
+			_List_fromArray(
+				[
+					elm$html$Html$text('Oppdatering fra vårt verksted')
+				]))
+		]));
+var author$project$Main$view = function (model) {
+	return A2(
+		elm$html$Html$div,
+		_List_Nil,
+		_List_fromArray(
+			[
+				author$project$Main$headerView,
+				author$project$Main$carsView(model)
+			]));
+};
+var elm$browser$Browser$External = function (a) {
+	return {$: 'External', a: a};
+};
+var elm$browser$Browser$Internal = function (a) {
+	return {$: 'Internal', a: a};
+};
+var elm$browser$Browser$Dom$NotFound = function (a) {
+	return {$: 'NotFound', a: a};
+};
+var elm$core$Basics$never = function (_n0) {
+	never:
+	while (true) {
+		var nvr = _n0.a;
+		var $temp$_n0 = nvr;
+		_n0 = $temp$_n0;
+		continue never;
+	}
+};
+var elm$core$Task$Perform = function (a) {
+	return {$: 'Perform', a: a};
+};
+var elm$core$Task$succeed = _Scheduler_succeed;
+var elm$core$Task$init = elm$core$Task$succeed(_Utils_Tuple0);
 var elm$core$Task$andThen = _Scheduler_andThen;
 var elm$core$Task$map = F2(
 	function (func, taskA) {
@@ -5107,34 +5592,8 @@ var elm$url$Url$fromString = function (str) {
 		elm$url$Url$Https,
 		A2(elm$core$String$dropLeft, 8, str)) : elm$core$Maybe$Nothing);
 };
-var elm$browser$Browser$sandbox = function (impl) {
-	return _Browser_element(
-		{
-			init: function (_n0) {
-				return _Utils_Tuple2(impl.init, elm$core$Platform$Cmd$none);
-			},
-			subscriptions: function (_n1) {
-				return elm$core$Platform$Sub$none;
-			},
-			update: F2(
-				function (msg, model) {
-					return _Utils_Tuple2(
-						A2(impl.update, msg, model),
-						elm$core$Platform$Cmd$none);
-				}),
-			view: impl.view
-		});
-};
-var author$project$Main$main = elm$browser$Browser$sandbox(
-	{init: 0, update: author$project$Main$update, view: author$project$Main$view});
+var elm$browser$Browser$element = _Browser_element;
+var author$project$Main$main = elm$browser$Browser$element(
+	{init: author$project$Main$init, subscriptions: author$project$Main$subscriptions, update: author$project$Main$update, view: author$project$Main$view});
 _Platform_export({'Main':{'init':author$project$Main$main(
 	elm$json$Json$Decode$succeed(_Utils_Tuple0))(0)}});}(this));
-
-var app = Elm.Main.init({ node: document.getElementById("elm-f0111bc4e658d0f98db96260c16f7e49") });
-if (document.getElementById("elm-f0111bc4e658d0f98db96260c16f7e49"))
-{
-  document.getElementById("elm-f0111bc4e658d0f98db96260c16f7e49").innerText = 'This is a headless program, meaning there is nothing to show here.\n\nI started the program anyway though, and you can access it as `app` in the developer console.';
-}
-</script>
-</body>
-</html>
