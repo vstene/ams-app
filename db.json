@@ -1,0 +1,30 @@
+{
+  "cars": [
+    {
+      "id": 1,
+      "assignedToUserId": 1,
+      "regnr": "ZT52590",
+      "type": "Skoda Octavia",
+      "status": "Arbeid startet",
+      "createdAt": 1538250000,
+      "lastUpdatedAt": 1538250342
+    },
+    {
+      "id": 2,
+      "regnr": "ZT47121",
+      "type": "Hyundai i40",
+      "createdAt": 1538250000,
+      "lastUpdatedAt": 1538250000
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Vegard"
+    },
+    {
+      "id": 2,
+      "name": "Jan"
+    }
+  ]
+}
