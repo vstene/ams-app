@@ -7,11 +7,17 @@ h1 {
     font-size: 38px;
 }
 
+.header img:hover {
+    cursor: pointer;
+}
+
+/* OVERVIEW */
 table.overview {
     width: 100%;
     font-size: 26px;
     margin-top:50px;
 }
+
 table.overview th {
     text-align: left;
 }
@@ -21,5 +27,19 @@ table.overview th span {
 }
 
 table.overview th:hover {
+    cursor: pointer;
+}
+
+/* MECHANIC */
+button.create-car {
+    font-size: 32px;
+    background: #fbfbfb;
+    border-radius: 5px;
+    margin-top: 50px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+table.overview.mechanic td {
     cursor: pointer;
 }

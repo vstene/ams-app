@@ -29,6 +29,7 @@ type alias Car =
     , car : String
     , workType : String
     , status : String
+    , mechanic : String
     }
 
 
@@ -47,11 +48,13 @@ init _ =
                   , car = "Hyundai I40"
                   , workType = "EU-kontroll"
                   , status = "Venter på mekaniker"
+                  , mechanic = "Ole"
                   }
                 , { regNr = "ZT52590"
                   , car = "Skoda Octavia"
                   , workType = "Dekkskifte"
                   , status = "Arbeid startet 08:14"
+                  , mechanic = "Ole"
                   }
                 ]
             , tableState = Table.initialSort "regNr"
@@ -117,6 +120,7 @@ tableConfig =
             [ Table.stringColumn "Reg.nr" .regNr
             , Table.stringColumn "Bilmerke" .car
             , Table.stringColumn "Hva gjøres" .workType
+            , Table.stringColumn "Mekaniker" .mechanic
             , Table.stringColumn "Status" .status
             ]
         , customizations = { defaultCustomizations | tableAttrs = [ class "overview" ] }
