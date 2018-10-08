@@ -3,8 +3,24 @@ body {
     margin-left: 200px;
 }
 
-h1 {
+
+.header {
+    clear: both;
+}
+
+.header img, .header h1 {
+    display: block;
+    float: left
+}
+
+.header h1.clock {
+    margin-left: 500px;
+    margin-top: 70px;
+}
+
+.header h1.title {
     font-size: 38px;
+    clear: both;
 }
 
 .header img:hover {

@@ -7,6 +7,7 @@ import Form.Validate as Validate exposing (..)
 import Html exposing (..)
 import Html.Attributes as Attrs exposing (..)
 import Html.Events as Events exposing (..)
+import Models exposing (Car, Mechanic, initialCars, m1)
 import Table exposing (defaultCustomizations)
 
 
@@ -27,15 +28,6 @@ main =
 -- MODEL
 
 
-type alias Car =
-    { regNr : String
-    , car : String
-    , workType : String
-    , status : String
-    , mechanic : String
-    }
-
-
 type Page
     = Overview
     | CreateCar
@@ -43,7 +35,7 @@ type Page
 
 type alias Model =
     { cars : List Car
-    , mechanic : String
+    , mechanic : Mechanic
     , tableState : Table.State
     , page : Page
     , carForm : Form () Car
@@ -54,21 +46,8 @@ init : () -> ( Model, Cmd Msg )
 init _ =
     let
         model =
-            { cars =
-                [ { regNr = "ZT47121"
-                  , car = "Hyundai I40"
-                  , workType = "EU-kontroll"
-                  , status = "Venter på mekaniker"
-                  , mechanic = "Ole"
-                  }
-                , { regNr = "ZT52590"
-                  , car = "Skoda Octavia"
-                  , workType = "Dekkskifte"
-                  , status = "Arbeid startet 08:14"
-                  , mechanic = "Ole"
-                  }
-                ]
-            , mechanic = "Ole"
+            { cars = List.filter (\car -> car.mechanicId == m1.id) initialCars
+            , mechanic = m1
             , tableState = Table.initialSort "regNr"
             , page = Overview
             , carForm = Form.initial [] validate
@@ -86,7 +65,7 @@ validate =
         |> andMap (field "car" string)
         |> andMap (field "workType" string)
         |> andMap (field "status" string)
-        |> andMap (field "mechanic" string)
+        |> andMap (field "mechanicId" int)
 
 
 
@@ -147,6 +126,7 @@ headerView : Model -> Html Msg
 headerView model =
     div [ Attrs.class "header" ]
         [ img [ Attrs.src "assets/ams-logo.png", Events.onClick (ChangePage Overview) ] []
+        , h1 [ Attrs.class "title" ] [ text ("Dine biler: " ++ model.mechanic.name) ]
         ]
 
 
@@ -169,6 +149,11 @@ tableConfig =
             [ Table.stringColumn "Reg.nr" .regNr
             , Table.stringColumn "Bilmerke" .car
             , Table.stringColumn "Hva gjøres" .workType
+            , Table.customColumn
+                { name = "Mekaniker"
+                , viewData = \data -> String.fromInt (data |> .mechanicId)
+                , sorter = Table.unsortable
+                }
             , Table.stringColumn "Status" .status
             ]
         , customizations = { defaultCustomizations | tableAttrs = [ class "overview mechanic" ] }
@@ -178,8 +163,7 @@ tableConfig =
 carsView : Model -> Html Msg
 carsView model =
     div []
-        [ h1 [] [ text ("Dine biler: " ++ model.mechanic) ]
-        , Table.view tableConfig model.tableState model.cars
+        [ Table.view tableConfig model.tableState model.cars
         ]
 
 

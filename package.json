@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch:db": "json-server --watch db.json --port 3001"
+    "watch:db": "json-server --watch db.json --port 3001",
+    "make": "npm run make:public && npm run make:mechanic",
+    "make:public": "elm make src/Public.elm --output=public/public.js",
+    "make:mechanic": "elm make src/Mechanic.elm --output=public/mechanic.js"
   },
   "repository": {
     "type": "git",
